@@ -1,0 +1,9 @@
+{
+  "name": "milpa-ruleset",
+  "version": "1.0.0",
+  "description": "set of rules for milpa cardgame",
+  "main": "index.js",
+  "repository": "git@github.com:rolasotelo/milpa-ruleset.git",
+  "author": "Rolando Sotelo <rola@hey.com>",
+  "license": "MIT"
+}
