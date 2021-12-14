@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2015",
+    "declaration": true,
     "module": "commonjs",
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist"
   }
 }
