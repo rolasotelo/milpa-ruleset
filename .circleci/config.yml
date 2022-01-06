@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   node: circleci/node@4.7.0
+  codecov: codecov/codecov@1.0.2
 
 jobs:
   install-job:
@@ -21,3 +22,6 @@ workflows:
           pkg-manager: yarn
           run-command: test
           version: "16.2.0"
+      - codecov/upload:
+          file: "./coverage/clover.xml"
+          token: $CODECOV_TOKEN
