@@ -20,7 +20,7 @@ workflows:
       - install-job
       - node/test:
           pkg-manager: yarn
-          run-command: test
+          run-command: test-ci
           version: "16.2.0"
       - codecov/upload:
           file: "./coverage/clover.xml"
