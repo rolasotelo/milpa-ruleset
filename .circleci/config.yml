@@ -13,11 +13,6 @@ jobs:
           install-yarn: true
           install-npm: false
           node-version: "16.2.0"
-
-workflows:
-  main-workflow:
-    jobs:
-      - install-job
       - node/test:
           pkg-manager: yarn
           run-command: test-ci
@@ -25,3 +20,8 @@ workflows:
       - codecov/upload:
           file: "./coverage/clover.xml"
           token: $CODECOV_TOKEN
+
+workflows:
+  main-workflow:
+    jobs:
+      - install-job
