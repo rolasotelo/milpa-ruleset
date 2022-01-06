@@ -1,0 +1,23 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.7.0
+
+jobs:
+  install-job:
+    docker:
+      - image: cimg/node:16.2.0
+    steps:
+      - node/install:
+          install-yarn: true
+          install-npm: false
+          node-version: "16.2.0"
+
+workflows:
+  main-workflow:
+    jobs:
+      - install-job
+      - node/test:
+          pkg-manager: yarn
+          run-command: test
+          version: "16.2.0"

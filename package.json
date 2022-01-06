@@ -1,6 +1,6 @@
 {
-  "name": "milpa-ruleset",
-  "version": "1.0.1",
+  "name": "@rolasotelo/milpa-ruleset",
+  "version": "1.0.0",
   "description": "set of rules for milpa cardgame",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
