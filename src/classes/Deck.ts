@@ -3,7 +3,7 @@ import {
     CARD_TYPE,
     CROP,
     CROP_DECK_DISTRIBUTION,
-    CROP_DECK_SIZE,
+    CROP_DECK_SIZE, ERROR,
     GOOD,
     GOOD_DECK_DISTRIBUTION,
     GOOD_DECK_SIZE
@@ -34,7 +34,7 @@ export class Deck {
                 cards.push(...cardsToAdd as Card[])
             }
         }
-        if(cards.length != CROP_DECK_SIZE && type == CARD_TYPE.CROP || cards.length != GOOD_DECK_SIZE && type == CARD_TYPE.GOOD) throw new Error('Invalid card distribution.')
+        if(cards.length != CROP_DECK_SIZE && type == CARD_TYPE.CROP || cards.length != GOOD_DECK_SIZE && type == CARD_TYPE.GOOD) throw new Error(ERROR.INVALID_DECK)
         return cards
     }
 

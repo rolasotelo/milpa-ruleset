@@ -20,3 +20,7 @@ export enum GOOD {
     MAGUEY = 'Maguey',
     CACTUS= 'Cactus'
 }
+
+export enum ERROR{
+    INVALID_DECK = 'Invalid deck distribution'
+}
