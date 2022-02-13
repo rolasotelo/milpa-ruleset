@@ -22,5 +22,6 @@ export enum GOOD {
 }
 
 export enum ERROR{
-    INVALID_DECK = 'Invalid deck distribution'
+    INVALID_DECK = 'Invalid deck distribution',
+    INVALID_CARD = 'Invalid card.'
 }
