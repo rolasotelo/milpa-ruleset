@@ -1,15 +1,29 @@
-import {CARD_TYPE} from "../common/enums";
+import {CARD_TYPE} from "../common";
 
 export abstract class Card {
 
-    constructor(
+    protected constructor(
         public readonly id: string,
         public readonly name: string,
         public readonly description: string,
+        public readonly short: string,
+        public readonly rule: string,
+        public readonly icon: string,
+        public readonly type: CARD_TYPE,
         public readonly pointsWhenPlayed: number,
-        public readonly type: CARD_TYPE
     ) {
     }
 
     abstract scoreWhenPlayed(): number;
+
+    get representation(){
+        return {
+            name: this.name,
+            description: this.description,
+            short: this.short,
+            rule: this.rule,
+            icon: this.icon,
+            type: this.type
+        } as const
+    }
 }

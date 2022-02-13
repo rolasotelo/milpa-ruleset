@@ -8,8 +8,11 @@ export class Chilli extends Card {
             CROP.CHILLI,
             'Chilli',
             "The most spicy crop of latin america",
-            3,
-            CARD_TYPE.CROP);
+            "WIP",
+            "WIP",
+            "🌶",
+            CARD_TYPE.CROP,
+            3);
     }
 
     scoreWhenPlayed(): number {

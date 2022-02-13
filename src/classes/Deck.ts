@@ -22,7 +22,7 @@ export class Deck {
         return this._cards
     }
 
-    public initializeDeck(type: CARD_TYPE): Card[] {
+    private initializeDeck(type: CARD_TYPE): Card[] {
         let cards: Card[] = []
         if (type === CARD_TYPE.CROP) {
             for (let crop in CROP_DECK_DISTRIBUTION) {
@@ -42,7 +42,7 @@ export class Deck {
         return cards
     }
 
-    private static createCard(card: CROP | GOOD): Card {
+    public static createCard(card: CROP | GOOD): Card {
 
         switch (card) {
 
