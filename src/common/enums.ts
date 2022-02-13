@@ -12,5 +12,11 @@ export enum CARD_TYPE {
 }
 
 export enum CROP {
-    CORN = 'CORN'
+    CORN = 'Corn',
+    CHILLI= 'Chilli'
+}
+
+export enum GOOD {
+    MAGUEY = 'Maguey',
+    CACTUS= 'Cactus'
 }
