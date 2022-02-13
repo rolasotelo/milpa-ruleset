@@ -11,4 +11,8 @@ export class Hand {
         return this._cards
     }
 
+    public takeCard(index: number){
+        this._cards.splice(index,1)
+    }
+
 }
