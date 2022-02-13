@@ -24,7 +24,8 @@ export const GOOD_DECK_DISTRIBUTION : DeckCardDistribution<typeof GOOD> = {
 } as const;
 
 export const CROP_DECK_SIZE = 64
-
+export const CROP_HAND_SIZE = 4
 export const GOOD_DECK_SIZE = 40
+export const GOOD_HAND_SIZE = 3
 
 

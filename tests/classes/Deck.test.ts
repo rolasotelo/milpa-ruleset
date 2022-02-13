@@ -1,5 +1,5 @@
 import {Deck} from "../../src/classes/Deck";
-import {CARD_TYPE, CROP, CROP_DECK_DISTRIBUTION, CROP_DECK_SIZE} from "../../src/common";
+import {CARD_TYPE, CROP, CROP_DECK_DISTRIBUTION, CROP_DECK_SIZE, CROP_HAND_SIZE} from "../../src/common";
 
 describe('Deck Class',function () {
     describe('On crop deck creation',function () {
@@ -17,6 +17,14 @@ describe('Deck Class',function () {
                 i++
             }
             expect(consecutiveCorn).not.toBe(CROP_DECK_DISTRIBUTION.CORN)
+        })
+        test('then dealing a new hand should return hand and deck should be updated',function () {
+            const initialDeckLength = deck.cards.length
+            const hand = deck.drawHand()
+            const newDeckLength = deck.cards.length
+            expect(initialDeckLength - newDeckLength).toEqual(CROP_HAND_SIZE)
+            expect(hand.cards.length).toEqual(CROP_HAND_SIZE)
+
         })
     })
 

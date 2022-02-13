@@ -3,12 +3,13 @@ import {
     CARD_TYPE,
     CROP,
     CROP_DECK_DISTRIBUTION,
-    CROP_DECK_SIZE, ERROR,
+    CROP_DECK_SIZE, CROP_HAND_SIZE, ERROR,
     GOOD,
     GOOD_DECK_DISTRIBUTION,
-    GOOD_DECK_SIZE
+    GOOD_DECK_SIZE, GOOD_HAND_SIZE
 } from "../common";
 import {Corn, Chilli} from "./crops";
+import {Hand} from "./Hand";
 
 export class Deck {
     private _cards: Card[] = []
@@ -75,6 +76,24 @@ export class Deck {
             ];
         }
         this._cards = deck
+    }
+
+    public drawHand():Hand{
+        if (this.type === CARD_TYPE.CROP) {
+            let hand = this.cards.slice(0,CROP_HAND_SIZE)
+            let newDeck = this.cards.slice(CROP_HAND_SIZE,this.cards.length)
+            if(hand.length != CROP_HAND_SIZE) throw new Error(ERROR.INVALID_HAND)
+            this._cards=newDeck
+            return new Hand(hand)
+        }
+        else {
+            let hand = this.cards.slice(0,GOOD_HAND_SIZE)
+            let newDeck = this.cards.slice(GOOD_HAND_SIZE,this.cards.length)
+            if(hand.length != GOOD_HAND_SIZE) throw new Error(ERROR.INVALID_HAND)
+            this._cards=newDeck
+            return new Hand(hand)
+        }
+
     }
 }
 
