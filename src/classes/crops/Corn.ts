@@ -1,5 +1,5 @@
 import {Card} from "../Card";
-import {CARD_TYPE, CROP} from "../../common/enums";
+import {CARD_TYPE, CORN, CROP} from "../../common";
 
 export class Corn extends Card {
 
@@ -11,7 +11,7 @@ export class Corn extends Card {
             "WIP",
             "🌽",
             CARD_TYPE.CROP,
-            5);
+            CORN.pointsWhenPlayed);
     }
 
     scoreWhenPlayed(): number {

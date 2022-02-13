@@ -1,5 +1,5 @@
 import {Card} from "../Card";
-import {CARD_TYPE, CROP} from "../../common";
+import {CARD_TYPE, CHILLI, CROP} from "../../common";
 
 export class Chilli extends Card {
 
@@ -12,7 +12,7 @@ export class Chilli extends Card {
             "WIP",
             "🌶",
             CARD_TYPE.CROP,
-            3);
+            CHILLI.pointsWhenPlayed);
     }
 
     scoreWhenPlayed(): number {
