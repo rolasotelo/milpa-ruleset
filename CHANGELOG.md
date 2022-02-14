@@ -1,5 +1,15 @@
 #### 1.0.6 (2022-02-14)
 
+##### Documentation Changes
+
+* **⚙️:**  updated CHANGELOG.md (eb0b38ed)
+
+##### Other Changes
+
+*  Update npmignore (8458871d)
+
+#### 1.0.6 (2022-02-14)
+
 ##### Other Changes
 
 *  Update npmignore (8458871d)
