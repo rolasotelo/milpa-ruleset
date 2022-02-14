@@ -8,7 +8,8 @@
   "author": "Rolando Sotelo <rola@hey.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "lint": "eslint --cache .",
+    "test": "yarn lint && jest",
     "test:watch": "jest -- watch",
     "prepublish": "tsc",
     "test-ci": "yarn test && codecov",
@@ -21,8 +22,14 @@
     "@babel/preset-env": "^7.15.6",
     "@babel/preset-typescript": "^7.15.0",
     "@types/jest": "^27.0.2",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
     "babel-jest": "^27.2.4",
     "codecov": "^3.8.3",
+    "eslint": "^8.9.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
     "generate-changelog": "^1.8.0",
     "jest": "^27.2.4",
     "np": "^7.6.0",
@@ -32,5 +39,6 @@
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
-  }
+  },
+  "dependencies": {}
 }

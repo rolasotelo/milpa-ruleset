@@ -4,13 +4,15 @@ import { Hand } from "./Hand";
 
 export class Match {
   private _turn: number = TURN.GAME_START;
+
   private _cropDeck: Deck = new Deck(CARD_TYPE.CROP);
+
   private _cropHand: Hand = new Hand([]);
 
   get turn() {
     if (TURN.GAME_START <= this._turn && this._turn <= TURN.LAST_TURN)
       return this._turn;
-    else throw new Error("Invalid turn");
+    throw new Error("Invalid turn");
   }
 
   set turn(nextTurn) {

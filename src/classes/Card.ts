@@ -1,4 +1,4 @@
-import { CARD_TYPE } from "../common";
+import { CARD_TYPE } from "../common/index";
 
 export abstract class Card {
   protected constructor(

@@ -27,20 +27,18 @@ export class Deck {
   }
 
   private initializeDeck(type: CARD_TYPE): Card[] {
-    let cards: Card[] = [];
+    const cards: Card[] = [];
     if (type === CARD_TYPE.CROP) {
-      for (let crop in CROP_DECK_DISTRIBUTION) {
-        let cardsToAdd = Array.from(
+      for (const crop in CROP_DECK_DISTRIBUTION) {
+        const cardsToAdd = Array.from(
           Array(CROP_DECK_DISTRIBUTION[crop as keyof typeof CROP]),
-          () => {
-            return Deck.createCard(CROP[crop as keyof typeof CROP]);
-          }
+          () => Deck.createCard(CROP[crop as keyof typeof CROP])
         );
         cards.push(...(cardsToAdd as Card[]));
       }
     } else {
-      for (let good in GOOD_DECK_DISTRIBUTION) {
-        let cardsToAdd = Array.from(
+      for (const good in GOOD_DECK_DISTRIBUTION) {
+        const cardsToAdd = Array.from(
           Array(GOOD_DECK_DISTRIBUTION[good as keyof typeof GOOD]),
           () => Deck.createCard(GOOD[good as keyof typeof GOOD])
         );
@@ -70,9 +68,9 @@ export class Deck {
   }
 
   private shuffleDeck() {
-    let currentIndex = this._cards.length,
-      randomIndex;
-    let deck = this._cards.slice();
+    let currentIndex = this._cards.length;
+      let randomIndex;
+    const deck = this._cards.slice();
 
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
@@ -93,13 +91,13 @@ export class Deck {
     if (this.type === CARD_TYPE.CROP) {
       if (this.cards.length < CROP_HAND_SIZE)
         throw new Error(ERROR.INVALID_HAND);
-      let hand = this.cards.splice(0, CROP_HAND_SIZE);
+      const hand = this.cards.splice(0, CROP_HAND_SIZE);
       return new Hand(hand);
-    } else {
+    } 
       if (this.cards.length < GOOD_HAND_SIZE)
         throw new Error(ERROR.INVALID_HAND);
-      let hand = this.cards.splice(0, GOOD_HAND_SIZE);
+      const hand = this.cards.splice(0, GOOD_HAND_SIZE);
       return new Hand(hand);
-    }
+    
   }
 }

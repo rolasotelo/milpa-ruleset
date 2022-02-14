@@ -7,13 +7,13 @@ import {
   CROP_HAND_SIZE,
 } from "../../src/common";
 
-describe("Deck Class", function () {
-  describe("On crop deck creation", function () {
+describe("Deck Class", () => {
+  describe("On crop deck creation", () => {
     const deck = new Deck(CARD_TYPE.CROP);
-    test(`then it should contain initial deck of size: ${CROP_DECK_SIZE}`, function () {
+    test(`then it should contain initial deck of size: ${CROP_DECK_SIZE}`, () => {
       expect(deck.cards.length).toBe(CROP_DECK_SIZE);
     });
-    test("then cards should be shuffled", function () {
+    test("then cards should be shuffled", () => {
       let i = 0;
       let consecutiveCorn = 0;
       while (i < CROP_DECK_DISTRIBUTION.CORN) {
@@ -22,7 +22,7 @@ describe("Deck Class", function () {
       }
       expect(consecutiveCorn).not.toBe(CROP_DECK_DISTRIBUTION.CORN);
     });
-    test("then dealing a new hand should return hand and deck should be updated", function () {
+    test("then dealing a new hand should return hand and deck should be updated", () => {
       const initialDeckLength = deck.cards.length;
       const hand = deck.drawHand();
       const newDeckLength = deck.cards.length;
