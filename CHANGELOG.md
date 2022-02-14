@@ -2,10 +2,10 @@
 
 ##### Chores
 
-* ** package.json 🛠 / configuration ⚙️ :**
+* **package.json 🛠 / configuration ⚙️ :**
   *  update scripts (11d529af)
   *  add np, update scripts (5ab110a2)
-* **package.json 🛠 / configuration ⚙️ :**  update scripts (95727560)
+  *  update scripts (95727560)
 
 ##### Documentation Changes
 
@@ -14,10 +14,10 @@
 
 ##### Other Changes
 
-* ** package.json 🔧 / clean up 🧹 :**  add np to plubish and update scripts" (de4e2137)
+* **package.json 🔧 / clean up 🧹 :**  add np to plubish and update scripts" (de4e2137)
 
 ##### Refactors
 
-* ** package.json 🔧 / clean up 🧹 :**  add np to plubish and update scripts (f6a2bf2f)
+* **package.json 🔧 / clean up 🧹 :**  add np to plubish and update scripts (f6a2bf2f)
 
 
