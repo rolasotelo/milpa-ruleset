@@ -8,18 +8,6 @@
 
 *  Update npmignore (8458871d)
 
-#### 1.0.6 (2022-02-14)
-
-##### Other Changes
-
-*  Update npmignore (8458871d)
-
-#### 1.0.6 (2022-02-14)
-
-##### Other Changes
-
-*  Update npmignore (8458871d)
-
 #### 1.0.3 (2022-02-13)
 
 ##### Other Changes
