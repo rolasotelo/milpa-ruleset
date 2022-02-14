@@ -15,6 +15,7 @@ $ npm i @rolasotel/milpa-ruleset
 ```
 
 ---
+
 ## Class Diagram
 
 The model implemented in this package can be seen here:

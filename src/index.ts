@@ -1,5 +1,5 @@
-import {Match} from './classes'
+import { Match } from "./classes";
 
 export function createMatch() {
-    return new Match()
+  return new Match();
 }

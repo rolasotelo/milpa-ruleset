@@ -1,3 +1,3 @@
 export type DeckCardDistribution<Type> = {
-    [index in keyof Type]: number;
+  [index in keyof Type]: number;
 };
