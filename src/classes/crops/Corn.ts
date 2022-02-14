@@ -1,16 +1,16 @@
-import { Card } from "../Card";
-import { CARD_TYPE, CORN, CROP } from "../../common";
+import Card from "../Card";
+import { CardType, CORN, Crop } from "../../common";
 
-export class Corn extends Card {
+export default class Corn extends Card {
   constructor() {
     super(
-      CROP.CORN,
+      Crop.CORN,
       "Corn",
       "The most important crop of latin america",
       "WIP",
       "WIP",
       "🌽",
-      CARD_TYPE.CROP,
+      CardType.CROP,
       CORN.pointsWhenPlayed
     );
   }

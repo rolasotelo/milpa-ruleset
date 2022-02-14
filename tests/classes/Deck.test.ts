@@ -1,7 +1,7 @@
-import { Deck } from "../../src/classes/Deck";
+import Deck from "../../src/classes/Deck";
 import {
-  CARD_TYPE,
-  CROP,
+  CardType,
+  Crop,
   CROP_DECK_DISTRIBUTION,
   CROP_DECK_SIZE,
   CROP_HAND_SIZE,
@@ -9,7 +9,7 @@ import {
 
 describe("Deck Class", () => {
   describe("On crop deck creation", () => {
-    const deck = new Deck(CARD_TYPE.CROP);
+    const deck = new Deck(CardType.CROP);
     test(`then it should contain initial deck of size: ${CROP_DECK_SIZE}`, () => {
       expect(deck.cards.length).toBe(CROP_DECK_SIZE);
     });
@@ -17,7 +17,7 @@ describe("Deck Class", () => {
       let i = 0;
       let consecutiveCorn = 0;
       while (i < CROP_DECK_DISTRIBUTION.CORN) {
-        if (deck.cards[i].id === CROP.CORN) consecutiveCorn++;
+        if (deck.cards[i].id === Crop.CORN) consecutiveCorn++;
         i++;
       }
       expect(consecutiveCorn).not.toBe(CROP_DECK_DISTRIBUTION.CORN);

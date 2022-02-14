@@ -1,11 +1,11 @@
-import { Match } from "../../src/classes";
-import { CROP_DECK_SIZE, CROP_HAND_SIZE, TURN } from "../../src/common";
+import { CROP_DECK_SIZE, CROP_HAND_SIZE, Turn } from "../../src/common";
+import Match from "../../src/classes/Match";
 
 describe("Match class", () => {
   describe("When match is created but before it starts", () => {
     const match = new Match();
     test("then initial values should be correct", () => {
-      expect(match.turn).toBe(TURN.GAME_START);
+      expect(match.turn).toBe(Turn.GAME_START);
       expect(match.cropDeck).toHaveLength(CROP_DECK_SIZE);
       expect(match.cropHand).toHaveLength(0);
     });
@@ -15,7 +15,7 @@ describe("Match class", () => {
     const match = new Match();
     match.startGame();
     test("then values should be updated accordingly", () => {
-      expect(match.turn).toBe(TURN.FIRST_TURN);
+      expect(match.turn).toBe(Turn.FIRST_TURN);
       expect(match.cropDeck).toHaveLength(CROP_DECK_SIZE - CROP_HAND_SIZE);
       expect(match.cropHand).toHaveLength(CROP_HAND_SIZE);
     });
@@ -26,7 +26,7 @@ describe("Match class", () => {
     match.startGame();
     match.nextTurn();
     test("then values should be updated accordingly", () => {
-      expect(match.turn).toBe(TURN.SECOND_TURN);
+      expect(match.turn).toBe(Turn.SECOND_TURN);
       expect(match.cropDeck).toHaveLength(CROP_DECK_SIZE - 2 * CROP_HAND_SIZE);
       expect(match.cropHand).toHaveLength(CROP_HAND_SIZE);
     });

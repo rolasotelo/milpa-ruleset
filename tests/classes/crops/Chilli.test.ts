@@ -1,6 +1,6 @@
-import { Chilli } from "../../../src/classes/crops";
-import { Card } from "../../../src/classes/Card";
 import { CHILLI } from "../../../src/common";
+import Chilli from "../../../src/classes/crops/Chilli";
+import Card from "../../../src/classes/Card";
 
 describe("Chilli Class", () => {
   describe("When scoreWhenPlayed is called", () => {

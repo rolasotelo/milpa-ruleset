@@ -1,6 +1,6 @@
-import { CARD_TYPE } from "../common/index";
+import { CardType } from "../common";
 
-export abstract class Card {
+export default abstract class Card {
   protected constructor(
     public readonly id: string,
     public readonly name: string,
@@ -8,7 +8,7 @@ export abstract class Card {
     public readonly short: string,
     public readonly rule: string,
     public readonly icon: string,
-    public readonly type: CARD_TYPE,
+    public readonly type: CardType,
     public readonly pointsWhenPlayed: number
   ) {}
 

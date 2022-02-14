@@ -1,4 +1,4 @@
-export enum TURN {
+export enum Turn {
   GAME_START,
   FIRST_TURN,
   SECOND_TURN,
@@ -6,22 +6,22 @@ export enum TURN {
   LAST_TURN,
 }
 
-export enum CARD_TYPE {
+export enum CardType {
   CROP = "CROP",
   GOOD = "GOOD",
 }
 
-export enum CROP {
+export enum Crop {
   CORN = "Corn",
   CHILLI = "Chilli",
 }
 
-export enum GOOD {
+export enum Good {
   MAGUEY = "Maguey",
   CACTUS = "Cactus",
 }
 
-export enum ERROR {
+export enum Errors {
   INVALID_DECK = "Invalid deck distribution",
   INVALID_CARD = "Invalid card.",
   INVALID_HAND = "Invalid hand size",

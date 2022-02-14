@@ -1,4 +1,4 @@
-import { CROP, GOOD } from "./enums";
+import { Crop, Good } from "./enums";
 import { DeckCardDistribution } from "./types";
 
 // Constants used by each crop card
@@ -13,12 +13,12 @@ export const CHILLI = {
 } as const;
 // End
 
-export const CROP_DECK_DISTRIBUTION: DeckCardDistribution<typeof CROP> = {
+export const CROP_DECK_DISTRIBUTION: DeckCardDistribution<typeof Crop> = {
   CORN: CORN.totalCards,
   CHILLI: CHILLI.totalCards,
 } as const;
 
-export const GOOD_DECK_DISTRIBUTION: DeckCardDistribution<typeof GOOD> = {
+export const GOOD_DECK_DISTRIBUTION: DeckCardDistribution<typeof Good> = {
   CACTUS: 20,
   MAGUEY: 20,
 } as const;

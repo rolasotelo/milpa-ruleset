@@ -1,18 +1,18 @@
-import { Card } from "../../src/classes/Card";
-import { CARD_TYPE, CROP } from "../../src/common";
+import { CardType, Crop } from "../../src/common";
+import Card from "../../src/classes/Card";
 
 describe("Card Class", () => {
   describe("When a card extending Card is created", () => {
     class ExampleCard extends Card {
       constructor() {
         super(
-          CROP.CHILLI,
+          Crop.CHILLI,
           "Chilli",
           "The most spicy crop of latin america",
           "WIP",
           "WIP",
           "🌶",
-          CARD_TYPE.CROP,
+          CardType.CROP,
           3
         );
       }

@@ -1,5 +1,6 @@
-import { Hand } from "../../src/classes/Hand";
-import { Chilli, Corn } from "../../src/classes/crops";
+import Hand from "../../src/classes/Hand";
+import Corn from "../../src/classes/crops/Corn";
+import Chilli from "../../src/classes/crops/Chilli";
 
 describe("Hand Class", () => {
   describe("When creating a new hand", () => {

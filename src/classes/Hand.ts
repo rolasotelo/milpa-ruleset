@@ -1,6 +1,7 @@
-import { Card } from "./Card";
+/* eslint-disable no-underscore-dangle */
+import Card from "./Card";
 
-export class Hand {
+export default class Hand {
   private readonly _cards: Card[] = [];
 
   constructor(cards: Card[]) {

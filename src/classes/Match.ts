@@ -1,24 +1,25 @@
-import { CARD_TYPE, ERROR, TURN } from "../common";
-import { Deck } from "./Deck";
-import { Hand } from "./Hand";
+/* eslint-disable no-underscore-dangle */
+import { CardType, Errors, Turn } from "../common";
+import Deck from "./Deck";
+import Hand from "./Hand";
 
-export class Match {
-  private _turn: number = TURN.GAME_START;
+export default class Match {
+  private _turn: number = Turn.GAME_START;
 
-  private _cropDeck: Deck = new Deck(CARD_TYPE.CROP);
+  private _cropDeck: Deck = new Deck(CardType.CROP);
 
   private _cropHand: Hand = new Hand([]);
 
   get turn() {
-    if (TURN.GAME_START <= this._turn && this._turn <= TURN.LAST_TURN)
+    if (Turn.GAME_START <= this._turn && this._turn <= Turn.LAST_TURN)
       return this._turn;
     throw new Error("Invalid turn");
   }
 
   set turn(nextTurn) {
-    if (TURN.FIRST_TURN <= nextTurn && nextTurn <= TURN.LAST_TURN)
+    if (Turn.FIRST_TURN <= nextTurn && nextTurn <= Turn.LAST_TURN)
       this._turn = nextTurn;
-    else throw new Error("Invalid turn");
+    else throw new Error(Errors.INVALID_START);
   }
 
   get cropDeck() {
@@ -30,13 +31,13 @@ export class Match {
   }
 
   public startGame() {
-    this.turn = TURN.FIRST_TURN;
+    this.turn = Turn.FIRST_TURN;
     this._cropHand = this._cropDeck.drawHand();
   }
 
   public nextTurn() {
-    if (this.turn == 0) throw new Error(ERROR.INVALID_START);
-    this.turn++;
+    if (this.turn === 0) throw new Error(Errors.INVALID_START);
+    this.turn += 1;
     this._cropHand = this._cropDeck.drawHand();
   }
 }
