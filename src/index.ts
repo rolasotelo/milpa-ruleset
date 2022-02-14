@@ -1,5 +1,5 @@
 import {Match} from './classes'
 
-function createMatch() {
+export function createMatch() {
     return new Match()
 }
