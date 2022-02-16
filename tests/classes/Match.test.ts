@@ -1,18 +1,20 @@
 import { CROP_DECK_SIZE, CROP_HAND_SIZE, Turn } from "../../src/common";
 import Match from "../../src/classes/Match";
+import CropDeckCreator from "../../src/classes/decks/CropDeckCreator";
+import GoodDeckCreator from "../../src/classes/decks/GoodDeckCreator";
 
 describe("Match class", () => {
   describe("When match is created but before it starts", () => {
-    const match = new Match();
-    test("then initial values should be correct", () => {
+    const match = new Match(new CropDeckCreator(), new GoodDeckCreator());
+    test("then decks and hands should be empty", () => {
       expect(match.turn).toBe(Turn.GAME_START);
-      expect(match.cropDeck).toHaveLength(CROP_DECK_SIZE);
+      expect(match.cropDeck).toHaveLength(0);
       expect(match.cropHand).toHaveLength(0);
     });
   });
 
   describe("When match is initialized", () => {
-    const match = new Match();
+    const match = new Match(new CropDeckCreator(), new GoodDeckCreator());
     match.startGame();
     test("then values should be updated accordingly", () => {
       expect(match.turn).toBe(Turn.FIRST_TURN);
@@ -22,7 +24,7 @@ describe("Match class", () => {
   });
 
   describe("When a new turn starts", () => {
-    const match = new Match();
+    const match = new Match(new CropDeckCreator(), new GoodDeckCreator());
     match.startGame();
     match.nextTurn();
     test("then values should be updated accordingly", () => {

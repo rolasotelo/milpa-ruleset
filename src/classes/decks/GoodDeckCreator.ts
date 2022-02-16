@@ -8,8 +8,8 @@ import {
   GOOD_HAND_SIZE,
 } from "../../common";
 import Card from "../Card";
-import CornCard from "../crops/corn/CornCard";
-import ChilliCard from "../crops/chilli/ChilliCard";
+import MagueyCard from "../goods/maguey/MagueyCard";
+import CactusCard from "../goods/cactus/CactusCard";
 
 class GoodDeckCreator extends DeckCreator {
   private GoodIds = Good;
@@ -25,10 +25,10 @@ class GoodDeckCreator extends DeckCreator {
   createCard(cardId: AnyCard): Card {
     switch (cardId) {
       case this.GoodIds.MAGUEY:
-        return new CornCard();
+        return new MagueyCard();
 
       case this.GoodIds.CACTUS:
-        return new ChilliCard();
+        return new CactusCard();
 
       default:
         throw new Error(Errors.INVALID_CARD);

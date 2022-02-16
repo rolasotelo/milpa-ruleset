@@ -1,5 +1,6 @@
 import { CardType, Crop } from "../../src/common";
 import Card from "../../src/classes/Card";
+import ChilliScoreCalculator from "../../src/classes/crops/chilli/ChilliScoreCalculator";
 
 describe("Card Class", () => {
   describe("When a card extending Card is created", () => {
@@ -13,12 +14,8 @@ describe("Card Class", () => {
           "WIP",
           "🌶",
           CardType.CROP,
-          3
+          new ChilliScoreCalculator()
         );
-      }
-
-      scoreWhenPlayed(): number {
-        return 0;
       }
     }
 
