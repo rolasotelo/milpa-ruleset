@@ -1,6 +1,7 @@
 import { CardType } from "../common";
+import ScoreCalculator from "./ScoreCalculator";
 
-export default abstract class Card {
+abstract class Card {
   protected constructor(
     public readonly id: string,
     public readonly name: string,
@@ -9,10 +10,8 @@ export default abstract class Card {
     public readonly rule: string,
     public readonly icon: string,
     public readonly type: CardType,
-    public readonly pointsWhenPlayed: number
+    public readonly scorer: ScoreCalculator
   ) {}
-
-  abstract scoreWhenPlayed(): number;
 
   get representation() {
     return {
@@ -25,3 +24,5 @@ export default abstract class Card {
     } as const;
   }
 }
+
+export default Card;
