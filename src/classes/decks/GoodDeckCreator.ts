@@ -7,9 +7,9 @@ import {
   GOOD_DECK_DISTRIBUTION,
   GOOD_HAND_SIZE,
 } from "../../common";
-import Card from "../Card";
-import MagueyCard from "../goods/maguey/MagueyCard";
-import CactusCard from "../goods/cactus/CactusCard";
+import Card from "../cards/Card";
+import MagueyCard from "../cards/goods/maguey/MagueyCard";
+import CactusCard from "../cards/goods/cactus/CactusCard";
 
 class GoodDeckCreator extends DeckCreator {
   private GoodIds = Good;

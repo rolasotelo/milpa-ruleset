@@ -1,7 +1,15 @@
 /* eslint-disable no-underscore-dangle */
-import { Errors, Turn } from "../common";
-import Card from "./Card";
+import { AllCards, Errors, ObjectWithKeyValueTypes, Turn } from "../common";
+import Card from "./cards/Card";
 import DeckCreator from "./decks/DeckCreator";
+import Board from "./board/Board";
+import CropDeckCreator from "./decks/CropDeckCreator";
+import GoodDeckCreator from "./decks/GoodDeckCreator";
+import ScoreCalculator from "./scoring/ScoreCalculator";
+import CactusScoreCalculator from "./cards/goods/cactus/CactusScoreCalculator";
+import MagueyScoreCalculator from "./cards/goods/maguey/MagueyScoreCalculator";
+import CornScoreCalculator from "./cards/crops/corn/CornScoreCalculator";
+import ChilliScoreCalculator from "./cards/crops/chilli/ChilliScoreCalculator";
 
 export default class Match {
   private _turn: number = Turn.GAME_START;
@@ -14,10 +22,20 @@ export default class Match {
 
   private _goodHand: Card[] = [];
 
-  constructor(
-    public cropDeckCreator: DeckCreator,
-    public goodDeckCreator: DeckCreator
-  ) {}
+  private scorers: ObjectWithKeyValueTypes<typeof AllCards, ScoreCalculator>;
+
+  public cropDeckCreator: DeckCreator;
+
+  public goodDeckCreator: DeckCreator;
+
+  public boards: [Board, Board];
+
+  constructor() {
+    this.cropDeckCreator = new CropDeckCreator();
+    this.goodDeckCreator = new GoodDeckCreator();
+    this.boards = [new Board(), new Board()];
+    this.scorers = Match.generateScoreCalculators();
+  }
 
   get turn() {
     if (Turn.GAME_START <= this._turn && this._turn <= Turn.LAST_TURN)
@@ -74,5 +92,22 @@ export default class Match {
     );
     this._goodDeck = initialGoodDeck;
     this._goodHand = initialGoodHand;
+  }
+
+  static generateScoreCalculators(): ObjectWithKeyValueTypes<
+    typeof AllCards,
+    ScoreCalculator
+  > {
+    const cactusScoreCalculator: ScoreCalculator = new CactusScoreCalculator();
+    const magueyScoreCalculator: ScoreCalculator = new MagueyScoreCalculator();
+    const cornScoreCalculator: ScoreCalculator = new CornScoreCalculator();
+    const chilliScoreCalculator: ScoreCalculator = new ChilliScoreCalculator();
+
+    return {
+      CACTUS: cactusScoreCalculator,
+      MAGUEY: magueyScoreCalculator,
+      CORN: cornScoreCalculator,
+      CHILLI: chilliScoreCalculator,
+    };
   }
 }

@@ -1,4 +1,4 @@
-import Card from "../Card";
+import Card from "../cards/Card";
 import { AnyCard } from "../../common";
 
 abstract class DeckCreator {

@@ -11,12 +11,34 @@ export enum CardType {
   GOOD = "GOOD",
 }
 
+export enum SlotType {
+  MILPA = "MILPA",
+  EDGE = "EDGE",
+}
+
 export enum Crop {
   CORN = "Corn",
   CHILLI = "Chilli",
 }
 
+export enum CropReverse {
+  Corn = "CORN",
+  Chilli = "CHILLI",
+}
+
 export enum Good {
+  MAGUEY = "Maguey",
+  CACTUS = "Cactus",
+}
+
+export enum GoodReverse {
+  Maguey = "MAGUEY",
+  Cactus = "CACTUS",
+}
+
+export enum AllCards {
+  CORN = "Corn",
+  CHILLI = "Chilli",
   MAGUEY = "Maguey",
   CACTUS = "Cactus",
 }

@@ -7,7 +7,7 @@ import {
   Errors,
   Good,
 } from "../../../src/common";
-import CornCard from "../../../src/classes/crops/corn/CornCard";
+import CornCard from "../../../src/classes/cards/crops/corn/CornCard";
 
 describe("CropDeckCreator", function () {
   describe("When creating card", function () {

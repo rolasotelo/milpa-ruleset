@@ -7,7 +7,7 @@ import {
   GOOD_HAND_SIZE,
 } from "../../../src/common";
 import GoodDeckCreator from "../../../src/classes/decks/GoodDeckCreator";
-import CactusCard from "../../../src/classes/goods/cactus/CactusCard";
+import CactusCard from "../../../src/classes/cards/goods/cactus/CactusCard";
 
 describe("GoodDeckCreator", function () {
   describe("When creating card", function () {

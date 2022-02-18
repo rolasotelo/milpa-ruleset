@@ -7,9 +7,9 @@ import {
   CROP_HAND_SIZE,
   Errors,
 } from "../../common";
-import Card from "../Card";
-import CornCard from "../crops/corn/CornCard";
-import ChilliCard from "../crops/chilli/ChilliCard";
+import Card from "../cards/Card";
+import CornCard from "../cards/crops/corn/CornCard";
+import ChilliCard from "../cards/crops/chilli/ChilliCard";
 
 class CropDeckCreator extends DeckCreator {
   private CropIds = Crop;

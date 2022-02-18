@@ -1,6 +1,6 @@
-import CornCard from "../../../src/classes/crops/corn/CornCard";
-import CactusCard from "../../../src/classes/goods/cactus/CactusCard";
-import Card from "../../../src/classes/Card";
+import CornCard from "../../../src/classes/cards/crops/corn/CornCard";
+import CactusCard from "../../../src/classes/cards/goods/cactus/CactusCard";
+import Card from "../../../src/classes/cards/Card";
 import DeckCreator from "../../../src/classes/decks/DeckCreator";
 import { Crop } from "../../../src/common";
 
