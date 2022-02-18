@@ -1,5 +1,5 @@
-import ScoreCalculator from "../../../scoring/ScoreCalculator";
-import Slot from "../../../slots/Slot";
+import { ScoreCalculator } from "../../../../interfaces";
+import { Slot } from "../../../slots";
 
 class CornScoreCalculator implements ScoreCalculator {
   public readonly pointsPerRow = 10;

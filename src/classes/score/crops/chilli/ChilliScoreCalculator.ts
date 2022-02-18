@@ -1,12 +1,12 @@
-import ScoreCalculator from "../../../scoring/ScoreCalculator";
-import Slot from "../../../slots/Slot";
+import { ScoreCalculator } from "../../../../interfaces";
+import { Slot } from "../../../slots";
 
-class MagueyScoreCalculator implements ScoreCalculator {
-  public readonly pointsPerLonelyMaguey = 10;
+class ChilliScoreCalculator implements ScoreCalculator {
+  public readonly pointsPerLonelyChilli = 10;
 
   public readonly pointsWhenPlayed = 5;
 
-  public readonly pointsPerMagueyAtTheEnd = 4;
+  public readonly pointsPerChiliDiagonallyAdjacent = 4;
 
   public readonly turnsOFHarvesting = [5, 6, 7, 8];
 
@@ -15,7 +15,7 @@ class MagueyScoreCalculator implements ScoreCalculator {
     milpaAndEdges: [Slot[], Slot[]];
   } {
     return {
-      score: this.pointsPerMagueyAtTheEnd,
+      score: this.pointsPerChiliDiagonallyAdjacent,
       milpaAndEdges,
     };
   }
@@ -26,7 +26,7 @@ class MagueyScoreCalculator implements ScoreCalculator {
   ): { score: number; milpaAndEdges: [Slot[], Slot[]] } {
     if (turn in this.turnsOFHarvesting) {
       return {
-        score: this.pointsPerLonelyMaguey,
+        score: this.pointsPerLonelyChilli,
         milpaAndEdges,
       };
     }
@@ -53,4 +53,4 @@ class MagueyScoreCalculator implements ScoreCalculator {
   }
 }
 
-export default MagueyScoreCalculator;
+export default ChilliScoreCalculator;

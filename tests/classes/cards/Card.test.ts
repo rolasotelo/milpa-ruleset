@@ -1,6 +1,6 @@
 import { CardType, Crop } from "../../../src/common";
 import Card from "../../../src/classes/cards/Card";
-import ChilliScoreCalculator from "../../../src/classes/cards/crops/chilli/ChilliScoreCalculator";
+import ChilliScoreCalculator from "../../../src/classes/score/crops/chilli/ChilliScoreCalculator";
 
 describe("Card Class", () => {
   describe("When a card extending Card is created", () => {

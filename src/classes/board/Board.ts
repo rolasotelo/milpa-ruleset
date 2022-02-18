@@ -1,7 +1,4 @@
 /* eslint-disable no-underscore-dangle */
-import Slot from "../slots/Slot";
-import MilpaSlot from "../slots/MilpaSlot";
-import EdgeSlot from "../slots/EdgeSlot";
 import {
   AllCards,
   AnyCard,
@@ -13,15 +10,21 @@ import {
   ObjectWithKeyValueTypes,
   SlotType,
 } from "../../common";
-import SlotInteractor from "../slots/SlotInteractor";
-import CactusMilpaSlotInteractor from "../cards/goods/cactus/CactusMilpaSlotInteractor";
-import MagueyMilpaSlotInteractor from "../cards/goods/maguey/MagueyMilpaSlotInteractor";
-import CornMilpaSlotInteractor from "../cards/crops/corn/CornMilpaSlotInteractor";
-import ChilliMilpaSlotInteractor from "../cards/crops/chilli/ChilliMilpaSlotInteractor";
-import CactusEdgeSlotInteractor from "../cards/goods/cactus/CactusEdgeSlotInteractor";
-import MagueyEdgeSlotInteractor from "../cards/goods/maguey/MagueyEdgeSlotInteractor";
-import CornEdgeSlotInteractor from "../cards/crops/corn/CornEdgeSlotInteractor";
-import ChilliEdgeSlotInteractor from "../cards/crops/chilli/ChilliEdgeSlotInteractor";
+
+import {
+  CactusEdgeSlotInteractor,
+  CactusMilpaSlotInteractor,
+  MagueyEdgeSlotInteractor,
+  MagueyMilpaSlotInteractor,
+} from "../interactors/goods";
+import {
+  ChilliEdgeSlotInteractor,
+  ChilliMilpaSlotInteractor,
+  CornEdgeSlotInteractor,
+  CornMilpaSlotInteractor,
+} from "../interactors/crops";
+import { SlotInteractor } from "../../interfaces";
+import { EdgeSlot, MilpaSlot, Slot } from "../slots";
 
 class Board {
   private _milpa: Slot[] = [];

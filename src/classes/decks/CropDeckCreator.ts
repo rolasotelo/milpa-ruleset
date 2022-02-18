@@ -8,8 +8,7 @@ import {
   Errors,
 } from "../../common";
 import Card from "../cards/Card";
-import CornCard from "../cards/crops/corn/CornCard";
-import ChilliCard from "../cards/crops/chilli/ChilliCard";
+import { ChilliCard, CornCard } from "../cards/crops";
 
 class CropDeckCreator extends DeckCreator {
   private CropIds = Crop;

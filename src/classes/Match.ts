@@ -3,13 +3,10 @@ import { AllCards, Errors, ObjectWithKeyValueTypes, Turn } from "../common";
 import Card from "./cards/Card";
 import DeckCreator from "./decks/DeckCreator";
 import Board from "./board/Board";
-import CropDeckCreator from "./decks/CropDeckCreator";
-import GoodDeckCreator from "./decks/GoodDeckCreator";
-import ScoreCalculator from "./scoring/ScoreCalculator";
-import CactusScoreCalculator from "./cards/goods/cactus/CactusScoreCalculator";
-import MagueyScoreCalculator from "./cards/goods/maguey/MagueyScoreCalculator";
-import CornScoreCalculator from "./cards/crops/corn/CornScoreCalculator";
-import ChilliScoreCalculator from "./cards/crops/chilli/ChilliScoreCalculator";
+import { CactusScoreCalculator, MagueyScoreCalculator } from "./score/goods";
+import { ChilliScoreCalculator, CornScoreCalculator } from "./score/crops";
+import { CropDeckCreator, GoodDeckCreator } from "./decks";
+import { ScoreCalculator } from "../interfaces";
 
 export default class Match {
   private _turn: number = Turn.GAME_START;

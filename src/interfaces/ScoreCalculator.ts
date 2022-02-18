@@ -1,4 +1,4 @@
-import Slot from "../slots/Slot";
+import { Slot } from "../classes/slots";
 
 interface ScoreCalculator {
   plusPointsWhenPlacedOnBoardAtPosition(

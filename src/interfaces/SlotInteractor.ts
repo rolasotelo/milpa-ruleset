@@ -1,4 +1,4 @@
-import Slot from "./Slot";
+import { Slot } from "../classes/slots";
 
 interface SlotInteractor {
   canInteractWithSlot(slot: Slot): boolean;

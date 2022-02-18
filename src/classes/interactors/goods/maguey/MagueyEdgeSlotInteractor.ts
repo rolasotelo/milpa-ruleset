@@ -1,15 +1,14 @@
-import SlotInteractor from "../../../slots/SlotInteractor";
 import {
   MAX_CARDS_PER_EDGE_SLOT,
   MAX_CARDS_PER_MILPA_SLOT,
   SlotType,
 } from "../../../../common";
-import Slot from "../../../slots/Slot";
-import Card from "../../Card";
-import MilpaSlot from "../../../slots/MilpaSlot";
-import ChilliCard from "./ChilliCard";
+import Card from "../../../cards/Card";
+import { SlotInteractor } from "../../../../interfaces";
+import { MagueyCard } from "../../../cards/goods";
+import { EdgeSlot, Slot } from "../../../slots";
 
-class ChilliMilpaSlotInteractor implements SlotInteractor {
+class MagueyEdgeSlotInteractor implements SlotInteractor {
   private maxCardsPerMilpaSlotModifier = MAX_CARDS_PER_MILPA_SLOT;
 
   private maxCardsPerEdgeSlotModifier = MAX_CARDS_PER_EDGE_SLOT;
@@ -22,10 +21,12 @@ class ChilliMilpaSlotInteractor implements SlotInteractor {
 
   pushToSlot(slot: Slot): Slot {
     const newCards: Card[] = [];
+    // TODO Implement Card Creator Singleton
     if (slot.type === SlotType.MILPA && this.canInteractWithSlot(slot))
-      newCards.push(new ChilliCard());
-    return new MilpaSlot(newCards);
+      newCards.push(new MagueyCard());
+    // TODO Create right slot
+    return new EdgeSlot(newCards);
   }
 }
 
-export default ChilliMilpaSlotInteractor;
+export default MagueyEdgeSlotInteractor;

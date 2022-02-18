@@ -1,12 +1,12 @@
-import ScoreCalculator from "../../../scoring/ScoreCalculator";
-import Slot from "../../../slots/Slot";
+import { ScoreCalculator } from "../../../../interfaces";
+import { Slot } from "../../../slots";
 
-class ChilliScoreCalculator implements ScoreCalculator {
-  public readonly pointsPerLonelyChilli = 10;
+class CactusScoreCalculator implements ScoreCalculator {
+  public readonly pointsPerLonelyCactus = 10;
 
   public readonly pointsWhenPlayed = 5;
 
-  public readonly pointsPerChiliDiagonallyAdjacent = 4;
+  public readonly pointsPerCactusAtTheEnd = 4;
 
   public readonly turnsOFHarvesting = [5, 6, 7, 8];
 
@@ -15,7 +15,7 @@ class ChilliScoreCalculator implements ScoreCalculator {
     milpaAndEdges: [Slot[], Slot[]];
   } {
     return {
-      score: this.pointsPerChiliDiagonallyAdjacent,
+      score: this.pointsPerCactusAtTheEnd,
       milpaAndEdges,
     };
   }
@@ -26,7 +26,7 @@ class ChilliScoreCalculator implements ScoreCalculator {
   ): { score: number; milpaAndEdges: [Slot[], Slot[]] } {
     if (turn in this.turnsOFHarvesting) {
       return {
-        score: this.pointsPerLonelyChilli,
+        score: this.pointsPerLonelyCactus,
         milpaAndEdges,
       };
     }
@@ -53,4 +53,4 @@ class ChilliScoreCalculator implements ScoreCalculator {
   }
 }
 
-export default ChilliScoreCalculator;
+export default CactusScoreCalculator;

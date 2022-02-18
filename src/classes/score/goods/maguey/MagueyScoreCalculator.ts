@@ -1,12 +1,12 @@
-import ScoreCalculator from "../../../scoring/ScoreCalculator";
-import Slot from "../../../slots/Slot";
+import { ScoreCalculator } from "../../../../interfaces";
+import { Slot } from "../../../slots";
 
-class CactusScoreCalculator implements ScoreCalculator {
-  public readonly pointsPerLonelyCactus = 10;
+class MagueyScoreCalculator implements ScoreCalculator {
+  public readonly pointsPerLonelyMaguey = 10;
 
   public readonly pointsWhenPlayed = 5;
 
-  public readonly pointsPerCactusAtTheEnd = 4;
+  public readonly pointsPerMagueyAtTheEnd = 4;
 
   public readonly turnsOFHarvesting = [5, 6, 7, 8];
 
@@ -15,7 +15,7 @@ class CactusScoreCalculator implements ScoreCalculator {
     milpaAndEdges: [Slot[], Slot[]];
   } {
     return {
-      score: this.pointsPerCactusAtTheEnd,
+      score: this.pointsPerMagueyAtTheEnd,
       milpaAndEdges,
     };
   }
@@ -26,7 +26,7 @@ class CactusScoreCalculator implements ScoreCalculator {
   ): { score: number; milpaAndEdges: [Slot[], Slot[]] } {
     if (turn in this.turnsOFHarvesting) {
       return {
-        score: this.pointsPerLonelyCactus,
+        score: this.pointsPerLonelyMaguey,
         milpaAndEdges,
       };
     }
@@ -53,4 +53,4 @@ class CactusScoreCalculator implements ScoreCalculator {
   }
 }
 
-export default CactusScoreCalculator;
+export default MagueyScoreCalculator;
