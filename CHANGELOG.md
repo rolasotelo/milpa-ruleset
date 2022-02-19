@@ -2,18 +2,18 @@
 
 ##### Documentation Changes
 
-* ** 📓 :**  update CHANGELOG (4845ac84)
+* **📓 :**  update CHANGELOG (4845ac84)
 
 ##### New Features
 
-* ** 🎉 :**
+* **🎉 :**
   *  implement Player model (7162c6be)
   *  Boards, Slots plus Interaction and  Scoring models (7d240708)
   *  add DeckCreator factory and implement scoring in cards by composing ScoreCalculator (b39ff7d2)
 
 ##### Refactors
 
-* ** 🔧 :**
+* **🔧 :**
   *  reorganize directories (1f6ad48c)
   *  run eslint --fix (92052ce1)
   *  format code with prettier (83d29d99)
@@ -21,7 +21,7 @@
 
 ##### Tests
 
-* ** 🤖 :**
+* **🤖 :**
   *  Board, ScoreInteractors, and ScoreCalculators (ba3343a9)
   *  DeckCreator and ScoreCalculator (26d2fcd6)
 
