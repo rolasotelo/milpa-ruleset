@@ -7,7 +7,7 @@ import {
   CropReverse,
   Good,
   GoodReverse,
-  ObjectWithKeyValueTypes,
+  ObjectWithInKeyofAndValueTypes,
   SlotType,
 } from "../../common";
 
@@ -31,12 +31,12 @@ class Board {
 
   private _edge: Slot[] = [];
 
-  public milpaSlotInteractors: ObjectWithKeyValueTypes<
+  public milpaSlotInteractors: ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     SlotInteractor
   >;
 
-  public edgeSlotInteractors: ObjectWithKeyValueTypes<
+  public edgeSlotInteractors: ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     SlotInteractor
   >;
@@ -86,7 +86,7 @@ class Board {
     return false;
   }
 
-  static generateMilpaSlotInteractors(): ObjectWithKeyValueTypes<
+  static generateMilpaSlotInteractors(): ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     SlotInteractor
   > {
@@ -105,7 +105,7 @@ class Board {
     };
   }
 
-  static generateEdgeSlotInteractors(): ObjectWithKeyValueTypes<
+  static generateEdgeSlotInteractors(): ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     SlotInteractor
   > {

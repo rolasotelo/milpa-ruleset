@@ -1,12 +1,18 @@
 /* eslint-disable no-underscore-dangle */
-import { AllCards, Errors, ObjectWithKeyValueTypes, Turn } from "../common";
+import {
+  AllCards,
+  Errors,
+  ObjectWithInKeyofAndValueTypes,
+  ObjectWithValue,
+  Turn,
+} from "../common";
 import Card from "./cards/Card";
 import DeckCreator from "./decks/DeckCreator";
-import Board from "./board/Board";
 import { CactusScoreCalculator, MagueyScoreCalculator } from "./score/goods";
 import { ChilliScoreCalculator, CornScoreCalculator } from "./score/crops";
 import { CropDeckCreator, GoodDeckCreator } from "./decks";
 import { ScoreCalculator } from "../interfaces";
+import Player from "./player/Player";
 
 export default class Match {
   private _turn: number = Turn.GAME_START;
@@ -19,18 +25,21 @@ export default class Match {
 
   private _goodHand: Card[] = [];
 
-  private scorers: ObjectWithKeyValueTypes<typeof AllCards, ScoreCalculator>;
+  private scorers: ObjectWithInKeyofAndValueTypes<
+    typeof AllCards,
+    ScoreCalculator
+  >;
 
   public cropDeckCreator: DeckCreator;
 
   public goodDeckCreator: DeckCreator;
 
-  public boards: [Board, Board];
+  private players: ObjectWithValue<Player> = {};
 
-  constructor() {
+  constructor(public readonly matchId: string) {
     this.cropDeckCreator = new CropDeckCreator();
     this.goodDeckCreator = new GoodDeckCreator();
-    this.boards = [new Board(), new Board()];
+
     this.scorers = Match.generateScoreCalculators();
   }
 
@@ -91,7 +100,15 @@ export default class Match {
     this._goodHand = initialGoodHand;
   }
 
-  static generateScoreCalculators(): ObjectWithKeyValueTypes<
+  public addPlayer(nickname: string) {
+    this.players[nickname] = new Player(nickname);
+  }
+
+  public getPlayerFromNickname(nickname: string) {
+    return this.players[nickname];
+  }
+
+  static generateScoreCalculators(): ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     ScoreCalculator
   > {

@@ -5,6 +5,10 @@ export type DeckCardDistribution<Type> = {
 };
 export type AnyCard = Crop | Good;
 
-export type ObjectWithKeyValueTypes<U, V> = {
+export type ObjectWithInKeyofAndValueTypes<U, V> = {
   [index in keyof U]: V;
 };
+
+export interface ObjectWithValue<T> {
+  [index: string]: T;
+}
