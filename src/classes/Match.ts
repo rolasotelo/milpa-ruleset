@@ -1,38 +1,127 @@
-import {CARD_TYPE, ERROR, TURN} from "../common";
-import {Deck} from "./Deck";
-import {Hand} from "./Hand";
+/* eslint-disable no-underscore-dangle */
+import {
+  AllCards,
+  Errors,
+  ObjectWithInKeyofAndValueTypes,
+  ObjectWithValue,
+  Turn,
+} from "../common";
+import Card from "./cards/Card";
+import DeckCreator from "./decks/DeckCreator";
+import { CactusScoreCalculator, MagueyScoreCalculator } from "./score/goods";
+import { ChilliScoreCalculator, CornScoreCalculator } from "./score/crops";
+import { CropDeckCreator, GoodDeckCreator } from "./decks";
+import { ScoreCalculator } from "../interfaces";
+import Player from "./player/Player";
 
-export class Match {
-    private _turn: number = TURN.GAME_START;
-    private _cropDeck : Deck = new Deck(CARD_TYPE.CROP)
-    private _cropHand : Hand = new Hand([])
+export default class Match {
+  private _turn: number = Turn.GAME_START;
 
-    get turn(){
-        if(TURN.GAME_START <= this._turn && this._turn<= TURN.LAST_TURN) return this._turn
-        else throw new Error('Invalid turn')
-    }
+  private _cropDeck: Card[] = [];
 
-    set turn(nextTurn){
-        if(TURN.FIRST_TURN <= nextTurn && nextTurn<= TURN.LAST_TURN) this._turn= nextTurn
-        else throw new Error('Invalid turn')
-    }
+  private _cropHand: Card[] = [];
 
-    get cropDeck(){
-        return this._cropDeck.cards
-    }
+  private _goodDeck: Card[] = [];
 
-    get cropHand(){
-        return this._cropHand.cards
-    }
+  private _goodHand: Card[] = [];
 
-    public startGame(){
-        this.turn = TURN.FIRST_TURN
-        this._cropHand = this._cropDeck.drawHand()
-    }
+  private scorers: ObjectWithInKeyofAndValueTypes<
+    typeof AllCards,
+    ScoreCalculator
+  >;
 
-    public nextTurn(){
-        if(this.turn == 0) throw new Error(ERROR.INVALID_START)
-        this.turn ++
-        this._cropHand = this._cropDeck.drawHand()
-    }
+  public cropDeckCreator: DeckCreator;
+
+  public goodDeckCreator: DeckCreator;
+
+  private players: ObjectWithValue<Player> = {};
+
+  constructor(public readonly matchId: string) {
+    this.cropDeckCreator = new CropDeckCreator();
+    this.goodDeckCreator = new GoodDeckCreator();
+
+    this.scorers = Match.generateScoreCalculators();
+  }
+
+  get turn() {
+    if (Turn.GAME_START <= this._turn && this._turn <= Turn.LAST_TURN)
+      return this._turn;
+    throw new Error("Invalid turn");
+  }
+
+  set turn(nextTurn) {
+    if (Turn.FIRST_TURN <= nextTurn && nextTurn <= Turn.LAST_TURN)
+      this._turn = nextTurn;
+    else throw new Error(Errors.INVALID_START);
+  }
+
+  get cropDeck() {
+    return this._cropDeck.slice();
+  }
+
+  get cropHand() {
+    return this._cropHand.slice();
+  }
+
+  get goodDeck() {
+    return this._goodDeck.slice();
+  }
+
+  get goodHand() {
+    return this._goodHand.slice();
+  }
+
+  public startGame() {
+    this.turn = Turn.FIRST_TURN;
+
+    this._cropDeck = this.cropDeckCreator.createDeck();
+    this._goodDeck = this.goodDeckCreator.createDeck();
+
+    this.drawAllHands();
+  }
+
+  public nextTurn() {
+    if (this.turn === 0) throw new Error(Errors.INVALID_START);
+    this.turn += 1;
+    this.drawAllHands();
+  }
+
+  private drawAllHands() {
+    const [initialCropHand, initialCropDeck] = this.cropDeckCreator.dealHand(
+      this.cropDeck
+    );
+    this._cropDeck = initialCropDeck;
+    this._cropHand = initialCropHand;
+
+    const [initialGoodHand, initialGoodDeck] = this.goodDeckCreator.dealHand(
+      this.goodDeck
+    );
+    this._goodDeck = initialGoodDeck;
+    this._goodHand = initialGoodHand;
+  }
+
+  public addPlayer(nickname: string) {
+    this.players[nickname] = new Player(nickname);
+  }
+
+  public getPlayerFromNickname(nickname: string) {
+    return this.players[nickname];
+  }
+
+  static generateScoreCalculators(): ObjectWithInKeyofAndValueTypes<
+    typeof AllCards,
+    ScoreCalculator
+  > {
+    const cactusScoreCalculator: ScoreCalculator = new CactusScoreCalculator();
+    const magueyScoreCalculator: ScoreCalculator = new MagueyScoreCalculator();
+    const cornScoreCalculator: ScoreCalculator = new CornScoreCalculator();
+    const chilliScoreCalculator: ScoreCalculator = new ChilliScoreCalculator();
+
+    return {
+      CACTUS: cactusScoreCalculator,
+      MAGUEY: magueyScoreCalculator,
+      CORN: cornScoreCalculator,
+      CHILLI: chilliScoreCalculator,
+    };
+  }
 }

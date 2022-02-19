@@ -1,29 +1,51 @@
-export enum TURN {
-    GAME_START,
-    FIRST_TURN,
-    SECOND_TURN,
-    PENULTIMATE_TURN = 15,
-    LAST_TURN
+export enum Turn {
+  GAME_START,
+  FIRST_TURN,
+  SECOND_TURN,
+  PENULTIMATE_TURN = 15,
+  LAST_TURN,
 }
 
-export enum CARD_TYPE {
-    CROP = 'CROP',
-    GOOD = 'GOOD'
+export enum CardType {
+  CROP = "CROP",
+  GOOD = "GOOD",
 }
 
-export enum CROP {
-    CORN = 'Corn',
-    CHILLI= 'Chilli'
+export enum SlotType {
+  MILPA = "MILPA",
+  EDGE = "EDGE",
 }
 
-export enum GOOD {
-    MAGUEY = 'Maguey',
-    CACTUS= 'Cactus'
+export enum Crop {
+  CORN = "Corn",
+  CHILLI = "Chilli",
 }
 
-export enum ERROR{
-    INVALID_DECK = 'Invalid deck distribution',
-    INVALID_CARD = 'Invalid card.',
-    INVALID_HAND = 'Invalid hand size',
-    INVALID_START = 'Invalid start'
+export enum CropReverse {
+  Corn = "CORN",
+  Chilli = "CHILLI",
+}
+
+export enum Good {
+  MAGUEY = "Maguey",
+  CACTUS = "Cactus",
+}
+
+export enum GoodReverse {
+  Maguey = "MAGUEY",
+  Cactus = "CACTUS",
+}
+
+export enum AllCards {
+  CORN = "Corn",
+  CHILLI = "Chilli",
+  MAGUEY = "Maguey",
+  CACTUS = "Cactus",
+}
+
+export enum Errors {
+  INVALID_DECK = "Invalid deck distribution",
+  INVALID_CARD = "Invalid card.",
+  INVALID_HAND = "Invalid hand size",
+  INVALID_START = "Invalid start",
 }

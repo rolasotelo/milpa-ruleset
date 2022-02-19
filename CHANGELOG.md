@@ -1,38 +1,48 @@
-#### 1.0.6 (2022-02-14)
+#### 1.0.8 (2022-02-19)
 
 ##### Documentation Changes
 
-* **⚙️:**  updated CHANGELOG.md (eb0b38ed)
+* **📓 :**  update CHANGELOG (4845ac84)
+
+##### New Features
+
+* **🎉 :**
+  *  implement Player model (7162c6be)
+  *  Boards, Slots plus Interaction and  Scoring models (7d240708)
+  *  add DeckCreator factory and implement scoring in cards by composing ScoreCalculator (b39ff7d2)
+
+##### Refactors
+
+* **🔧 :**
+  *  reorganize directories (1f6ad48c)
+  *  run eslint --fix (92052ce1)
+  *  format code with prettier (83d29d99)
+* ** 🔧 / lint🧹 :**  solve for...in lint errors (066a67f8)
+
+##### Tests
+
+* **🤖 :**
+  *  Board, ScoreInteractors, and ScoreCalculators (ba3343a9)
+  *  DeckCreator and ScoreCalculator (26d2fcd6)
+
+#### 1.0.7 (2022-02-14)
+
+##### Chores
+
+- **package.json 🛠 / configuration ⚙️ :**
+  - update scripts (11d529af)
+  - add np, update scripts (5ab110a2)
+  - update scripts (95727560)
+
+##### Documentation Changes
+
+- **README.md 📓 :** add class diagram section (8bfd1756)
+- **📓:** update CHANGELOG (5d4cd875)
 
 ##### Other Changes
 
-*  Update npmignore (8458871d)
+- **package.json 🔧 / clean up 🧹 :** add np to plubish and update scripts" (de4e2137)
 
-#### 1.0.3 (2022-02-13)
+##### Refactors
 
-##### Other Changes
-
-*  Add badges to README (6949a888)
-*  Match class (ae90d7ad)
-*  takeCard (f98bbb3a)
-*  drawHand (0f9304a5)
-*  scoreWhenPlayed (8c0f5246)
-*  representation (06926e29)
-*  shuffle cards (16e0f1fc)
-*  initialize deck (e0a3b2e1)
-*  Initialize Deck (6db28142)
-*  Create Match, Card, Deck and Hand classes (e7d12e82)
-*  Update gitignore (67e8e2ca)
-*  remove token env (7239b5f1)
-*  run codecov/upload as post-steps (461e8302)
-*  Move test and codecov as steps (553e3497)
-*  dummy test (3579d74c)
-*  Remove coverage (46cd66d5)
-*  codecov setup (37be817f)
-*  Exclude tests folder from tsc (70c23a18)
-*  Add circleci test job (57c9a4c6)
-*  Exclude node_modules and dist (ecf6afe7)
-*  Update version (b1246e15)
-*  Setup prepublish (015ce5bf)
-*  jest and ts setup (9df73b36)
-*  Milpa ruleset (261add61)
+- **package.json 🔧 / clean up 🧹 :** add np to plubish and update scripts (f6a2bf2f)

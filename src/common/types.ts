@@ -1,3 +1,14 @@
+import { Crop, Good } from "./enums";
+
 export type DeckCardDistribution<Type> = {
-    [index in keyof Type]: number;
+  [index in keyof Type]: number;
 };
+export type AnyCard = Crop | Good;
+
+export type ObjectWithInKeyofAndValueTypes<U, V> = {
+  [index in keyof U]: V;
+};
+
+export interface ObjectWithValue<T> {
+  [index: string]: T;
+}
