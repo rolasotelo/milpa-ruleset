@@ -22,7 +22,7 @@ class CornEdgeSlotInteractor implements SlotInteractor {
   pushToSlot(slot: Slot): Slot {
     const newCards: Card[] = [];
     // TODO Implement Card Creator Singleton
-    if (slot.type === SlotType.MILPA && this.canInteractWithSlot(slot))
+    if (slot.type === SlotType.EDGE && this.canInteractWithSlot(slot))
       newCards.push(new CornCard());
     // TODO Create right slot
     return new EdgeSlot(newCards);

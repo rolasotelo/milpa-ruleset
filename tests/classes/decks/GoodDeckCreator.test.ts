@@ -26,7 +26,7 @@ describe("GoodDeckCreator", function () {
 
   describe("When creating deck", function () {
     const deck = new GoodDeckCreator().createDeck();
-    test("then it should have proper size and all cards should be of proper type", function () {
+    test("then it should have proper size and all score should be of proper type", function () {
       expect(deck).toHaveLength(GOOD_DECK_SIZE);
       deck.forEach(function (card) {
         expect(card.type).toBe(CardType.GOOD);

@@ -25,11 +25,11 @@ import {
 } from "../interactors/crops";
 import { SlotInteractor } from "../../interfaces";
 import { EdgeSlot, MilpaSlot, Slot } from "../slots";
-
+// TODO implement interactions between different player's cards
 class Board {
   private _milpa: Slot[] = [];
 
-  private _edges: Slot[] = [];
+  private _edge: Slot[] = [];
 
   public milpaSlotInteractors: ObjectWithKeyValueTypes<
     typeof AllCards,
@@ -47,7 +47,7 @@ class Board {
 
     this._milpa = Array.from(Array(16), () => new MilpaSlot([]));
 
-    this._edges = Array.from(Array(16), () => new EdgeSlot([]));
+    this._edge = Array.from(Array(16), () => new EdgeSlot([]));
   }
 
   get milpa() {
@@ -58,12 +58,12 @@ class Board {
     this._milpa = slots;
   }
 
-  get edges() {
-    return this._edges.slice();
+  get edge() {
+    return this._edge.slice();
   }
 
-  set edges(slots: Slot[]) {
-    this._edges = slots;
+  set edge(slots: Slot[]) {
+    this._edge = slots;
   }
 
   canCardInteractWithSlot(

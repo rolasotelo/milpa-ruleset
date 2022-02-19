@@ -24,7 +24,7 @@ describe("CropDeckCreator", function () {
 
   describe("When creating deck", function () {
     const deck = new CropDeckCreator().createDeck();
-    test("then it should have proper size and all cards should be of proper type", function () {
+    test("then it should have proper size and all score should be of proper type", function () {
       expect(deck).toHaveLength(CROP_DECK_SIZE);
       deck.forEach(function (card) {
         expect(card.type).toBe(CardType.CROP);

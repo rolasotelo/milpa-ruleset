@@ -10,7 +10,7 @@ describe("Slot Class...", function () {
     };
     const cards = [new CornCard(), new ChilliCard()];
     const slot = new milpaSlot(cards);
-    test("then setting new cards should update slot properly", function () {
+    test("then setting new score should update slot properly", function () {
       expect(JSON.stringify(slot.cards)).toEqual(JSON.stringify(cards));
       const newCards = cards.slice();
       newCards.pop();

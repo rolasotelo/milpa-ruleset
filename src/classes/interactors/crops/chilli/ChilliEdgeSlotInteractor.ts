@@ -21,7 +21,7 @@ class ChilliEdgeSlotInteractor implements SlotInteractor {
 
   pushToSlot(slot: Slot): Slot {
     const newCards: Card[] = [];
-    if (slot.type === SlotType.MILPA && this.canInteractWithSlot(slot))
+    if (slot.type === SlotType.EDGE && this.canInteractWithSlot(slot))
       newCards.push(new ChilliCard());
     return new EdgeSlot(newCards);
   }
