@@ -12,3 +12,16 @@ export type ObjectWithInKeyofAndValueTypes<U, V> = {
 export interface ObjectWithValue<T> {
   [index: string]: T;
 }
+
+export interface MatchConstructor<U, V> {
+  turn: number;
+  currentAndNextPlayer: { current: string; next: string };
+  matchId: string;
+  cropHand: U[];
+  cropDeck: U[];
+  goodHand: U[];
+  goodDeck: U[];
+  gameOwner: string;
+  players: V;
+  nextPlayerIndex: number;
+}

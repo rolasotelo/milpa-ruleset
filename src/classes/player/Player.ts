@@ -7,7 +7,11 @@ class Player {
 
   private _board: Board = new Board();
 
-  constructor(public readonly nickname: string) {}
+  private _connected = true;
+
+  public isYourTurn = false;
+
+  constructor(public readonly id: string, public readonly nickname: string) {}
 
   get points() {
     return this._points;
@@ -19,6 +23,14 @@ class Player {
 
   get board() {
     return this._board;
+  }
+
+  get connected() {
+    return this._connected;
+  }
+
+  set connected(connected) {
+    this._connected = connected;
   }
 }
 

@@ -2,6 +2,7 @@
 import {
   AllCards,
   Errors,
+  MatchConstructor,
   ObjectWithInKeyofAndValueTypes,
   ObjectWithValue,
   Turn,
@@ -34,9 +35,36 @@ export default class Match {
 
   public goodDeckCreator: DeckCreator;
 
-  private players: ObjectWithValue<Player> = {};
+  private readonly players: ObjectWithValue<Player> = {};
 
-  constructor(public readonly matchId: string) {
+  private readonly playerCount = 2;
+
+  private _nextPlayerIndex = -1;
+
+  private _currentPlayerId = "";
+
+  private _nextPlayerId = "";
+
+  private _localPlayerId: undefined | string = undefined;
+
+  private _ownerPlayerId: undefined | string = undefined;
+
+  constructor(
+    public readonly matchId: string,
+    initializer?: MatchConstructor<Card, ObjectWithValue<Player>>
+  ) {
+    if (initializer) {
+      this.turn = initializer.turn;
+      this._currentPlayerId = initializer.currentAndNextPlayer.current;
+      this._nextPlayerId = initializer.currentAndNextPlayer.next;
+      this._nextPlayerIndex = initializer.nextPlayerIndex;
+      this._cropHand = initializer.cropHand;
+      this._cropDeck = initializer.cropDeck;
+      this._goodHand = initializer.goodHand;
+      this._goodDeck = initializer.goodDeck;
+      this.ownerPlayerId = initializer.gameOwner;
+      this.players = initializer.players;
+    }
     this.cropDeckCreator = new CropDeckCreator();
     this.goodDeckCreator = new GoodDeckCreator();
 
@@ -46,13 +74,13 @@ export default class Match {
   get turn() {
     if (Turn.GAME_START <= this._turn && this._turn <= Turn.LAST_TURN)
       return this._turn;
-    throw new Error("Invalid turn");
+    throw new Error(Errors.INVALID_TURN);
   }
 
   set turn(nextTurn) {
     if (Turn.FIRST_TURN <= nextTurn && nextTurn <= Turn.LAST_TURN)
       this._turn = nextTurn;
-    else throw new Error(Errors.INVALID_START);
+    else throw new Error(Errors.INVALID_TURN);
   }
 
   get cropDeck() {
@@ -71,19 +99,78 @@ export default class Match {
     return this._goodHand.slice();
   }
 
-  public startGame() {
-    this.turn = Turn.FIRST_TURN;
+  get isGameOwner() {
+    return (
+      this._localPlayerId === this._ownerPlayerId &&
+      this._ownerPlayerId !== undefined
+    );
+  }
 
+  set localPlayerId(id: string) {
+    if (this._localPlayerId !== undefined)
+      throw new Error(Errors.INVALID_PLAYER);
+    this._localPlayerId = id;
+  }
+
+  get ownerPlayerId() {
+    if (this._ownerPlayerId === undefined)
+      throw new Error(Errors.NOT_OWNER_SET);
+    return this._ownerPlayerId;
+  }
+
+  set ownerPlayerId(id: string) {
+    this._ownerPlayerId = id;
+  }
+
+  get isGameOngoing() {
+    return (
+      !this.isAcceptingPlayer &&
+      this.areAllPlayersConnected &&
+      this.turn > Turn.GAME_START
+    );
+  }
+
+  get isGameReadyToStart() {
+    return (
+      !this.isAcceptingPlayer &&
+      this.areAllPlayersConnected &&
+      this.turn === Turn.GAME_START &&
+      this.isGameOwner
+    );
+  }
+
+  private get currentPlayerCount() {
+    return Object.keys(this.players).length;
+  }
+
+  private get isAcceptingPlayer() {
+    return this.currentPlayerCount < this.playerCount;
+  }
+
+  private get areAllPlayersConnected() {
+    return Object.keys(this.players).reduce(
+      (previousPlayersConnected, id) =>
+        this.players[id].connected && previousPlayersConnected,
+      true
+    );
+  }
+
+  public startGame() {
+    if (!this.isGameReadyToStart) throw new Error(Errors.INVALID_START);
+    this.chooseFirstPlayer();
     this._cropDeck = this.cropDeckCreator.createDeck();
     this._goodDeck = this.goodDeckCreator.createDeck();
-
     this.drawAllHands();
+    this.turn = Turn.FIRST_TURN;
   }
 
   public nextTurn() {
-    if (this.turn === 0) throw new Error(Errors.INVALID_START);
+    if (this.turn === 0 || !this.isGameOngoing)
+      throw new Error(Errors.INVALID_TURN);
+    if (!this.isYourTurn()) throw new Error(Errors.NOT_YOUR_TURN);
     this.turn += 1;
     this.drawAllHands();
+    this.updatePlayersIsYourTurn();
   }
 
   private drawAllHands() {
@@ -100,15 +187,75 @@ export default class Match {
     this._goodHand = initialGoodHand;
   }
 
-  public addPlayer(nickname: string) {
-    this.players[nickname] = new Player(nickname);
+  public addPlayer(
+    id: string,
+    nickname: string,
+    isLocal = false,
+    isOwner = false
+  ) {
+    if (isLocal) this.localPlayerId = id;
+    if (isOwner) this.ownerPlayerId = id;
+    this.players[id] = new Player(id, nickname);
   }
 
-  public getPlayerFromNickname(nickname: string) {
-    return this.players[nickname];
+  public getPlayerFromId(id: string) {
+    return this.players[id];
   }
 
-  static generateScoreCalculators(): ObjectWithInKeyofAndValueTypes<
+  private chooseFirstPlayer() {
+    const firstPlayerIndex = Math.floor(this.playerCount * Math.random());
+    this._nextPlayerIndex =
+      firstPlayerIndex < this.playerCount - 1 ? firstPlayerIndex + 1 : 0;
+    Object.keys(this.players).forEach((id, index) => {
+      if (index === firstPlayerIndex) this._currentPlayerId = id;
+      if (index === this._nextPlayerIndex) this._nextPlayerId = id;
+      this.players[id].isYourTurn = index === firstPlayerIndex;
+    });
+  }
+
+  private updatePlayersIsYourTurn() {
+    const newPlayerIndex = this._nextPlayerIndex;
+    this._nextPlayerIndex =
+      newPlayerIndex < this.playerCount - 1 ? newPlayerIndex + 1 : 0;
+    Object.keys(this.players).forEach((id, index) => {
+      if (index === newPlayerIndex) this._currentPlayerId = id;
+      if (index === this._nextPlayerIndex) this._nextPlayerId = id;
+      this.players[id].isYourTurn = index === newPlayerIndex;
+    });
+  }
+
+  public getInfoNecessaryToCloneGame(): MatchConstructor<
+    Card,
+    ObjectWithValue<Player>
+  > {
+    return {
+      turn: this.turn,
+      currentAndNextPlayer: this.idForCurrentAndNextPlayersTurn(),
+      matchId: this.matchId,
+      cropHand: this.cropHand,
+      cropDeck: this.cropDeck,
+      goodHand: this.goodHand,
+      goodDeck: this.goodDeck,
+      gameOwner: this.ownerPlayerId,
+      players: this.players,
+      nextPlayerIndex: this._nextPlayerIndex,
+    };
+  }
+
+  public idForCurrentAndNextPlayersTurn() {
+    return {
+      current: this._currentPlayerId,
+      next: this._nextPlayerId,
+    };
+  }
+
+  public isYourTurn() {
+    return (
+      this._localPlayerId === this.idForCurrentAndNextPlayersTurn().current
+    );
+  }
+
+  private static generateScoreCalculators(): ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
     ScoreCalculator
   > {
