@@ -5,6 +5,7 @@ import {
   MatchConstructor,
   ObjectWithInKeyofAndValueTypes,
   ObjectWithValue,
+  PlayerInitializer,
   Turn,
 } from "../common";
 import Card from "./cards/Card";
@@ -14,6 +15,7 @@ import { ChilliScoreCalculator, CornScoreCalculator } from "./score/crops";
 import { CropDeckCreator, GoodDeckCreator } from "./decks";
 import { ScoreCalculator } from "../interfaces";
 import Player from "./player/Player";
+import Board from "./board/Board";
 
 export default class Match {
   private _turn: number = Turn.GAME_START;
@@ -63,12 +65,24 @@ export default class Match {
       this._goodHand = initializer.goodHand;
       this._goodDeck = initializer.goodDeck;
       this.ownerPlayerId = initializer.gameOwner;
-      this.players = initializer.players;
+      this.players = Match.initializePlayers(initializer.players);
     }
     this.cropDeckCreator = new CropDeckCreator();
     this.goodDeckCreator = new GoodDeckCreator();
 
     this.scorers = Match.generateScoreCalculators();
+  }
+
+  private static initializePlayers(players: ObjectWithValue<Player>) {
+    const initializedPlayers: ObjectWithValue<Player> = {};
+    Object.keys(players).forEach((value: string) => {
+      initializedPlayers[value] = new Player(
+        "",
+        "",
+        players[value] as unknown as PlayerInitializer<Board>
+      );
+    });
+    return initializedPlayers;
   }
 
   get turn() {
@@ -143,11 +157,11 @@ export default class Match {
     return Object.keys(this.players).length;
   }
 
-  private get isAcceptingPlayer() {
+  public get isAcceptingPlayer() {
     return this.currentPlayerCount < this.playerCount;
   }
 
-  private get areAllPlayersConnected() {
+  public get areAllPlayersConnected() {
     return Object.keys(this.players).reduce(
       (previousPlayersConnected, id) =>
         this.players[id].connected && previousPlayersConnected,
@@ -230,15 +244,37 @@ export default class Match {
   > {
     return {
       turn: this.turn,
-      currentAndNextPlayer: this.idForCurrentAndNextPlayersTurn(),
+      currentAndNextPlayer: { ...this.idForCurrentAndNextPlayersTurn() },
       matchId: this.matchId,
-      cropHand: this.cropHand,
-      cropDeck: this.cropDeck,
-      goodHand: this.goodHand,
-      goodDeck: this.goodDeck,
+      cropHand: [...this.cropHand],
+      cropDeck: [...this.cropDeck],
+      goodHand: [...this.goodHand],
+      goodDeck: [...this.goodDeck],
       gameOwner: this.ownerPlayerId,
-      players: this.players,
+      players: { ...this.players },
       nextPlayerIndex: this._nextPlayerIndex,
+    };
+  }
+
+  public getInfo() {
+    const playersInfo: ObjectWithValue<{
+      nickname: string;
+      points: number;
+      connected: boolean;
+    }> = {};
+    Object.keys(this.players).forEach((value: string) => {
+      playersInfo[value] = {
+        nickname: this.players[value].nickname,
+        points: this.players[value].points,
+        connected: this.players[value].connected,
+      };
+    });
+
+    return {
+      turn: this.turn,
+      matchId: this.matchId,
+      players: playersInfo,
+      currentAndNextPlayer: this.idForCurrentAndNextPlayersTurn(),
     };
   }
 

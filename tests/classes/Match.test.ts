@@ -81,7 +81,8 @@ describe("Match class", () => {
         onlineMatch["owner"].getInfoNecessaryToCloneGame();
       onlineMatch["second"] = new Match(matchId, matchConstructor);
       expect(
-        onlineMatch["owner"].isGameOngoing && onlineMatch["second"]
+        onlineMatch["owner"].isGameOngoing &&
+          onlineMatch["second"].isGameOngoing
       ).toBeTruthy();
       onlineMatch["second"].localPlayerId = "second";
       expect(

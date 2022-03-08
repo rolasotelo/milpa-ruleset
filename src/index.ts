@@ -1,5 +1,5 @@
 import Match from "./classes/Match";
 
-export default function createMatch() {
-  return new Match("abc123");
+export default function createMatch(matchId: string) {
+  return new Match(matchId);
 }
