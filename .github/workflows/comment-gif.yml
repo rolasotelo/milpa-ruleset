@@ -1,4 +1,4 @@
-name: Comment GIF 🖼
+name: Comment GIF 🙊
 on:
   issues:
     types: [opened, edited]
@@ -9,7 +9,7 @@ on:
 
 jobs:
   giphy-generator:
-    name: GIPHY Generator 🖼
+    name: GIPHY Generator 🙉
     runs-on: ubuntu-latest
     steps:
       - name: GIPHY Generator
