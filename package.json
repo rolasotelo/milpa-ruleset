@@ -13,9 +13,9 @@
     "test:watch": "jest -- watch",
     "prepublish": "tsc",
     "test-ci": "yarn test && codecov",
-    "release:major": "yarn prepublish && changelog -M && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np major",
-    "release:minor": "yarn prepublish && changelog -m && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np minor",
-    "release:patch": "yarn prepublish && changelog -p && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np patch --any-branch --no-release-draft"
+    "release:major": "yarn prepublish && changelog -M && git add CHANGELOG.md && git commit -m 'docs(📓): Update CHANGELOG.md' && np major",
+    "release:minor": "yarn prepublish && changelog -m && git add CHANGELOG.md && git commit -m 'docs(📓): Update CHANGELOG.md' && np minor",
+    "release:patch": "yarn prepublish && changelog -p && git add CHANGELOG.md && git commit -m 'docs(📓): Update CHANGELOG.md' && np patch --any-branch --no-release-draft"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
