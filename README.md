@@ -26,3 +26,11 @@ The model implemented in this package can be seen here:
     </a>
     
 </p>
+
+---
+
+## Repo diagram 📈
+
+![diagram](./diagram.svg)
+
+---
