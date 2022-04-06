@@ -1,6 +1,6 @@
 {
   "name": "@rolasotelo/milpa-ruleset",
-  "version": "1.0.8",
+  "version": "0.1.0",
   "description": "set of rules for milpa card-game",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,9 +13,9 @@
     "test:watch": "jest -- watch",
     "prepublish": "tsc",
     "test-ci": "yarn test && codecov",
-    "release:major": "yarn prepublish && changelog -M && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np major",
-    "release:minor": "yarn prepublish && changelog -m && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np minor",
-    "release:patch": "yarn prepublish && changelog -p && git add CHANGELOG.md && git commit -m 'docs( 📓 ): update CHANGELOG.md' && np patch --any-branch --no-release-draft"
+    "release:major": "yarn prepublish && np major",
+    "release:minor": "yarn prepublish && np minor",
+    "release:patch": "yarn prepublish && np patch --any-branch --no-release-draft"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -31,7 +31,6 @@
     "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
-    "generate-changelog": "^1.8.0",
     "jest": "^27.2.4",
     "np": "^7.6.0",
     "prettier": "^2.5.1",

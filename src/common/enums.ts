@@ -48,4 +48,8 @@ export enum Errors {
   INVALID_CARD = "Invalid card.",
   INVALID_HAND = "Invalid hand size",
   INVALID_START = "Invalid start",
+  INVALID_TURN = "Invalid turn transition",
+  INVALID_PLAYER = "Invalid player",
+  NOT_YOUR_TURN = "Not your turn",
+  NOT_OWNER_SET = "Not game owner set yet.",
 }

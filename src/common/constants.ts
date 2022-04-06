@@ -29,3 +29,4 @@ export const GOOD_DECK_SIZE = 40;
 export const GOOD_HAND_SIZE = 3;
 export const MAX_CARDS_PER_MILPA_SLOT = 2;
 export const MAX_CARDS_PER_EDGE_SLOT = 2;
+export const TOTAL_TURNS = 16;
