@@ -1,3 +1,25 @@
+### 1.1.0 (2022-04-06)
+
+##### Chores
+
+* **🛠/config⚙️ :**  Update release scripts (7d6b0f7d)
+
+##### Documentation Changes
+
+* ** 📓 :**  update CHANGELOG (0dac88ba)
+
+##### New Features
+
+* ** 🎉 :**  implement game owner and Match initializer for non owner players (896f4c9e)
+
+##### Bug Fixes
+
+* **🐛:**  Create Player instances on Match initialization (d529e77c)
+
+##### Tests
+
+* ** 🤖 :**  unit-test game initializer (2752ca6c)
+
 #### 1.0.8 (2022-02-19)
 
 ##### Documentation Changes
