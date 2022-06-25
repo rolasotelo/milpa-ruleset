@@ -31,7 +31,7 @@ Package to be used alongside [milpa-online](https://github.com/rolasotelo/milpa-
 and [milpa-server](https://github.com/rolasotelo/la-milpa-server) to make the online card-game work.
 
 ```shell
-$ npm i @rolasotel/milpa-ruleset
+npm i @rolasotel/milpa-ruleset
 ```
 
 ---
@@ -44,5 +44,4 @@ The model implemented in this package can be seen here:
     <a href="https://milpa-ruleset-rola.wunderbucket.dev/">
         <img src="https://milpa-ruleset-rola.wunderbucket.dev/diagrams/a74bf0e3699da3f8e58beeb19b53e20a.svg"/>
     </a>
-    
 </p>
