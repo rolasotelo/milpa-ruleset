@@ -7,6 +7,8 @@ abstract class Slot {
 
   private _cards: Card[] = [];
 
+  private _modifiers: Card[] = [];
+
   constructor(cards: Card[]) {
     this.cards = cards;
   }
@@ -17,6 +19,22 @@ abstract class Slot {
 
   set cards(cards: Card[]) {
     this._cards = cards;
+  }
+
+  addCard(card: Card) {
+    this._cards.push(card);
+  }
+
+  get modifiers() {
+    return this._modifiers.slice();
+  }
+
+  set modifiers(cards: Card[]) {
+    this._cards = cards;
+  }
+
+  addModifier(card: Card) {
+    this._modifiers.push(card);
   }
 }
 
