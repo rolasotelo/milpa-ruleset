@@ -7,9 +7,9 @@ describe("Board class", function () {
     const board = new Board();
     test("then both milpa and edge slots should be empty", function () {
       expect(board.milpa).toHaveLength(16);
-      expect(board.edge).toHaveLength(16);
+      expect(board.edges).toHaveLength(16);
       board.milpa.forEach((slot) => expect(slot.cards).toEqual([]));
-      board.edge.forEach((slot) => expect(slot.cards).toEqual([]));
+      board.edges.forEach((slot) => expect(slot.cards).toEqual([]));
     });
   });
   describe("When verifying interaction of card and slot", function () {

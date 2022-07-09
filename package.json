@@ -11,7 +11,7 @@
     "lint": "eslint --cache --ext .js,.ts .",
     "prettier": "npx prettier --write .",
     "test": "yarn lint && jest",
-    "test:watch": "jest -- watch",
+    "test:watch": "jest --watch",
     "prepublish": "tsc",
     "test-ci": "yarn test && codecov",
     "release:major": "yarn prepublish && np major",

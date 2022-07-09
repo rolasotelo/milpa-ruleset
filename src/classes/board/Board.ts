@@ -29,7 +29,7 @@ import { EdgeSlot, MilpaSlot, Slot } from "../slots";
 class Board {
   private _milpa: Slot[] = [];
 
-  private _edge: Slot[] = [];
+  private _edges: Slot[] = [];
 
   public milpaSlotInteractors: ObjectWithInKeyofAndValueTypes<
     typeof AllCards,
@@ -47,7 +47,7 @@ class Board {
 
     this._milpa = Array.from(Array(16), () => new MilpaSlot([]));
 
-    this._edge = Array.from(Array(16), () => new EdgeSlot([]));
+    this._edges = Array.from(Array(16), () => new EdgeSlot([]));
   }
 
   get milpa() {
@@ -58,12 +58,72 @@ class Board {
     this._milpa = slots;
   }
 
-  get edge() {
-    return this._edge.slice();
+  getMilpaNthRow(n: number): Slot[] {
+    return this._milpa.slice(n * 4, n * 4 + 4);
   }
 
-  set edge(slots: Slot[]) {
-    this._edge = slots;
+  getMilpaFirstRow(): Slot[] {
+    return this.getMilpaNthRow(0);
+  }
+
+  getMilpaSecondRow(): Slot[] {
+    return this.getMilpaNthRow(1);
+  }
+
+  getMilpaThirdRow(): Slot[] {
+    return this.getMilpaNthRow(2);
+  }
+
+  getMilpaFourthRow(): Slot[] {
+    return this.getMilpaNthRow(3);
+  }
+
+  getMilpaNthColumn(n: number): Slot[] {
+    return this._milpa
+      .slice(n, 1 + n)
+      .concat(this._milpa.slice(4 + n, 5 + n))
+      .concat(this._milpa.slice(8 + n, 9 + n))
+      .concat(this._milpa.slice(12 + n, 13 + n));
+  }
+
+  getMilpaFirstColumn(): Slot[] {
+    return this.getMilpaNthColumn(0);
+  }
+
+  getMilpaSecondColumn(): Slot[] {
+    return this.getMilpaNthColumn(1);
+  }
+
+  getMilpaThirdColumn(): Slot[] {
+    return this.getMilpaNthColumn(2);
+  }
+
+  getMilpaFourthColumn(): Slot[] {
+    return this.getMilpaNthColumn(3);
+  }
+
+  get edges() {
+    return this._edges.slice();
+  }
+
+  set edges(slots: Slot[]) {
+    this._edges = slots;
+  }
+
+  getEdgeTopRow(): Slot[] {
+    return this._edges.slice(0, 4);
+  }
+
+  getEdgeRightColumn(): Slot[] {
+    return this._edges.slice(4, 8);
+  }
+
+  getEdgeBottomRow(): Slot[] {
+    return this._edges.slice(8, 12);
+  }
+
+  getEdgeLeftColumn(): Slot[] {
+    return this._edges.slice(12, 16);
   }
 
   canCardInteractWithSlot(
